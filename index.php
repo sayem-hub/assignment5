@@ -63,11 +63,11 @@ session_start();
                                 </td>
 
                                 <td>
-                                    <?php printf('<a href="/crud/index.php?task=edit&id=%s">Edit</a> | <a class="delete" href="/crud/index.php?task=delete&id=%s">Delete</a>', $student['id'], $student['id']); ?>
+                                    <?php printf('<a href="/index.php?edit&id=%s">Edit</a> | <a class="delete" href="/index.php?delete&id=%s">Delete</a>', $student['id'], $student['id']); ?>
                                 </td>
 
                                 <td>
-                                    <?php printf('<a href="/crud/index.php?task=edit&id=%s">Edit</a>', $student['id']); ?>
+                                    <?php printf('<a href="/index.php?edit&id=%s">Edit</a>', $student['id']); ?>
                                 </td>
 
                             </tr>
