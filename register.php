@@ -17,7 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $users[] = $user;
 
-    file_put_contents('./data/users.json', json_encode($users), FILE_APPEND);
+    $serializedData = serialize($users);
+
+    file_put_contents('./data/users.txt', $serializedData, FILE_APPEND);
 
     header("Location: index.php");
 }

@@ -5,8 +5,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $data = file_get_contents('./data/users.json');
-    $users = json_decode($data, true);
+    $serialziedData = file_get_contents('./data/users.txt');
+    $users = unserialize($serialziedData);
 
     foreach ($users as $user) {
         if ($user['email'] === $email && password_verify($password, $user['password'])) {
