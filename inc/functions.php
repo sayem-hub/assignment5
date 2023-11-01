@@ -3,7 +3,7 @@
 function addStudent($fname, $lname, $roll)
 {
     $found = false;
-    $serialziedData = file_get_contents(DB_NAME);
+    $serialziedData = file_get_contents('../data/db.txt');
     $students = unserialize($serialziedData);
     foreach ($students as $_student) {
         if ($_student['roll'] == $roll) {
@@ -21,7 +21,7 @@ function addStudent($fname, $lname, $roll)
         );
         array_push($students, $student);
         $serializedData = serialize($students);
-        file_put_contents(DB_NAME, $serializedData, LOCK_EX);
+        file_put_contents('../data/db.txt', $serializedData, LOCK_EX);
 
         return true;
     }
@@ -31,7 +31,7 @@ function addStudent($fname, $lname, $roll)
 
 function getStudent($id)
 {
-    $serialziedData = file_get_contents(DB_NAME);
+    $serialziedData = file_get_contents('../data/db.txt');
     $students = unserialize($serialziedData);
     foreach ($students as $student) {
         if ($student['id'] == $id) {
@@ -45,7 +45,7 @@ function getStudent($id)
 function updateStudent($id, $fname, $lname, $roll)
 {
     $found = false;
-    $serialziedData = file_get_contents(DB_NAME);
+    $serialziedData = file_get_contents('../data/db.txt');
     $students = unserialize($serialziedData);
     foreach ($students as $_student) {
         if ($_student['roll'] == $roll && $_student['id'] != $id) {
@@ -58,7 +58,7 @@ function updateStudent($id, $fname, $lname, $roll)
         $students[$id - 1]['lname'] = $lname;
         $students[$id - 1]['roll'] = $roll;
         $serializedData = serialize($students);
-        file_put_contents(DB_NAME, $serializedData, LOCK_EX);
+        file_put_contents('../data/db.txt', $serializedData, LOCK_EX);
 
         return true;
     }
@@ -68,7 +68,7 @@ function updateStudent($id, $fname, $lname, $roll)
 
 function deleteStudent($id)
 {
-    $serialziedData = file_get_contents(DB_NAME);
+    $serialziedData = file_get_contents('../data/db.txt');
     $students = unserialize($serialziedData);
 
     foreach ($students as $offset => $student) {
@@ -78,12 +78,12 @@ function deleteStudent($id)
 
     }
     $serializedData = serialize($students);
-    file_put_contents(DB_NAME, $serializedData, LOCK_EX);
+    file_put_contents('../data/db.txt', $serializedData, LOCK_EX);
 }
 
 function printRaw()
 {
-    $serialziedData = file_get_contents(DB_NAME);
+    $serialziedData = file_get_contents('../data/db.txt');
     $students = unserialize($serialziedData);
     print_r($students);
 }
@@ -101,12 +101,12 @@ function isAdmin()
     return ('admin' == $_SESSION['role']);
 }
 
-function isEditor()
+function isManager()
 {
-    return ('editor' == $_SESSION['role']);
+    return ('manager' == $_SESSION['role']);
 }
 
 function hasPrivilege()
 {
-    return (isAdmin() || isEditor());
+    return (isAdmin() || isManager());
 }
