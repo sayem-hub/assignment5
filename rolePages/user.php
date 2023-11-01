@@ -12,11 +12,11 @@ session_start([
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+    <title>User Page</title>
 </head>
 
 <body>
-    Hi User!
+    <?php include_once "../data/homeData.php"; ?>
 </body>
 
 </html>

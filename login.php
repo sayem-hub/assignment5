@@ -8,6 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $serialziedData = file_get_contents('./data/users.txt');
     $users = unserialize($serialziedData);
 
+    print_r($users);
+
     foreach ($users as $user) {
         if ($user['email'] === $email && password_verify($password, $user['password'])) {
             $_SESSION['email'] = $user['email'];
@@ -19,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header("Location: ./rolePages/admin.php");
                     break;
                 case 'manager':
-                    header("Location: manager.php");
+                    header("Location: ./rolePages/manager.php");
                     break;
                 case 'user':
                     header("Location: ./rolePages/user.php");
