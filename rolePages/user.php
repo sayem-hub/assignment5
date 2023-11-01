@@ -1,11 +1,3 @@
-<?php
-
-session_start([
-    'cookie_lifetime' => 900,
-]);
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +8,7 @@ session_start([
 </head>
 
 <body>
-    <?php include_once "../data/homeData.php"; ?>
+    <?php include_once "../index.php"; ?>
 </body>
 
 </html>
